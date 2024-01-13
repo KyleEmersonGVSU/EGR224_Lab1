@@ -21,6 +21,7 @@ int main() {
     int deckM[52];//deck with 52 for the amount of cards cant add decksizeM because of the functions he wants on the paperwork
     srand(time(NULL));// Random number generator
     int AnsM=0;
+    color_Pattern();
     AnsM=Introduction(AnsM);
     //printf("%d",AnsM);
     if (AnsM == 1 ){

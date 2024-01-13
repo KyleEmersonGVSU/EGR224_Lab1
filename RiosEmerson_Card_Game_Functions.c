@@ -14,21 +14,68 @@
 #include <stdlib.h>
 #include <time.h>
 #include "RiosEmerson_Card_Game_Header.h"
+
+const char *PURPLE_Background = "\x1b[45m";
+const char *BLUE_Background = "\x1b[44m";
+const char *RED_Background = "\x1b[41m";
+const char *GREEN_Background = "\x1b[42m";
+const char *YELLOW_Background = "\x1b[43m";
+const char *ORANGE_Background = "\x1b[43;1m";
+const char *RESET_Background = "\x1b[0m";
+
+void delayMS(unsigned int mseconds){
+    clock_t goal = mseconds + clock();
+    while (goal > clock());
+}
+int color_Pattern(void){
+    const char *colors[] = {BLUE_Background, RED_Background, GREEN_Background};
+    int num_colors = 3;
+    int num_spaces = 2; // Number of spaces to achieve a square
+    int color_index = 0;
+
+    for(int line = 0; line < 4; line++) {
+        for (int i = 0; i < 50; i++){
+            // Set the starting background color for each segment
+            printf("%s", colors[(color_index + i) % num_colors]);
+            for(int j = 0; j < num_spaces; j++) {
+                printf(" "); // Print spaces with the current background color
+            }
+        }
+        color_index = (color_index + 1) % num_colors; // Move to the next starting color for the next line
+        printf("%s\n", RESET_Background); // Reset the background at the end of each line
+    }
+    printf("\n\n");
+}
 // Function Definitions
 int Introduction(int Ans){
     char InitalPlay;
-printf("\t\t\t\t\t\033[31mFrom the creators of nothing else:\033[0m\n");
-printf("\t\t\t\t\tJuan M. Rios & Kyle Emerson\n \t\t\t\t\t Present!\n");
-sleep(1);//use to add a delay in Seconds NOT MS
-printf("\t\t\t\t\t\033[32;44mCards!\033[0m\n");
-sleep(1);//use to add a delay in Seconds NOT MS
-printf("\t\t\t\t\t\033[32;44mCards!\033[0m\n");
-sleep(1);//use to add a delay in Seconds NOT MS
-printf("\t\t\t\t\t\033[32;44mCards!\033[0m\n");
-sleep(1);//use to add a delay in Seconds NOT MS
-printf("Are you ready?\n");
-printf("Press [Y] for Yes or [N] for cowards:_\n");
-scanf(" %c", &InitalPlay);
+    delayMS(500);
+        printf("\t\t\t\t");
+    printf("\033[31mFrom the creators of nothing else:\033[0m\n");
+        printf("\t\t\t\t");
+
+    printf("Juan M. Rios & Kyle Emerson\n \t\t\t\tPresent!\n");
+    delayMS(1000);//use to add a delay in Seconds NOT MS
+        printf("\t\t\t\t");
+
+    printf("\033[32;44mCards!\033[0m\n");
+    delayMS(500);//use to add a delay in Seconds NOT MS
+        printf("\t\t\t\t");
+
+    printf("\033[32;44mCards!\033[0m\n");
+    delayMS(500);//use to add a delay in Seconds NOT MS
+        printf("\t\t\t\t");
+
+    printf("\033[32;44mCards!\033[0m\n");
+    delayMS(500);//use to add a delay in Seconds NOT MS
+        printf("\t\t\t\t");
+
+    printf("Are you ready?\n");
+            printf("\t\t\t\t");
+    printf("Press [Y] for Yes or [N] for cowards:\n");
+        printf("\n\n");
+    color_Pattern();
+    scanf(" %c", &InitalPlay);
     if(InitalPlay == 'Y' || InitalPlay == 'y'){
         Ans = 1;
     }
@@ -88,6 +135,7 @@ void display_hand(int hand[], int size) {
     for (int i = 0; i < size; i++) {
         display_card(hand[i]);
         printf("\n");
+        delayMS(500);
     }
 }
 /****************************************************
@@ -165,6 +213,7 @@ int playerScore, computerScore;
         }
         printf("\n\n\n");
 }
+
 /*
     // Red text
     printf("\033[31mThis text is red!\033[0m\n");
