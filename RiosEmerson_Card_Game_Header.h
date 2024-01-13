@@ -29,16 +29,25 @@ int popCard(int *size, int deck[]);
 int findScore(int hand[], int size);
 /***********************************/
 
-/**********Constants Colors***************/
+/*************Colors******************/
 extern const char *PURPLE_Background;
 extern const char *BLUE_Background;
 extern const char *RED_Background;
 extern const char *GREEN_Background;
 extern const char *YELLOW_Background;
 extern const char *ORANGE_Background;
-extern const char *RESET_Background;
+extern const char *PURPLE_TEXT;
+extern const char *GREEN_TEXT;
+extern const char *BLUE_TEXT;
+extern const char *RED_TEXT;
+extern const char *YELLOW_TEXT;
+extern const char *RESETCOLORS;
 /***********************************/
 
+/******Counters for the wins********/
+extern int Player_Wins;
+extern int Computer_Wins;
+/***********************************/
 
 /********EXTRA FUNCTIONS ********/
 void delayMS(unsigned int mseconds);
@@ -86,7 +95,10 @@ Orange
     printf("%s   ", ORANGE_BG); // "Orange" space
     printf("%s\n", RESET);      // Reset to default color
 
-
+    printf("%sThis text is green.%s\n", GREEN_TEXT, RESET);
+    printf("%sThis text is blue.%s\n", BLUE_TEXT, RESET);
+    printf("%sThis text is red.%s\n", RED_TEXT, RESET);
+    printf("%sThis text is yellow.%s\n", YELLOW_TEXT, RESET);
     // Red text
     printf("\033[31mThis text is red!\033[0m\n");
 

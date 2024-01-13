@@ -15,13 +15,24 @@
 #include <time.h>
 #include "RiosEmerson_Card_Game_Header.h"
 
+
+/***********************************/
 const char *PURPLE_Background = "\x1b[45m";
 const char *BLUE_Background = "\x1b[44m";
 const char *RED_Background = "\x1b[41m";
 const char *GREEN_Background = "\x1b[42m";
 const char *YELLOW_Background = "\x1b[43m";
 const char *ORANGE_Background = "\x1b[43;1m";
-const char *RESET_Background = "\x1b[0m";
+const char *PRUPLE_TEXT = "\x1b[35;5m";//Accidently found that adding ;5 causing it to blink for some reason
+const char *GREEN_TEXT = "\x1b[32;5m";//Added five to cause it to blink like a circus
+const char *BLUE_TEXT = "\x1b[34m";
+const char *RED_TEXT = "\x1b[31m";
+const char *YELLOW_TEXT = "\x1b[33m";
+const char *RESETCOLORS= "\x1b[0m";
+int Player_Wins = 0;
+int Computer_Wins = 0;
+/***********************************/
+
 
 void delayMS(unsigned int mseconds){
     clock_t goal = mseconds + clock();
@@ -42,7 +53,7 @@ int color_Pattern(void){
             }
         }
         color_index = (color_index + 1) % num_colors; // Move to the next starting color for the next line
-        printf("%s\n", RESET_Background); // Reset the background at the end of each line
+        printf("%s\n", RESETCOLORS); // Reset the background at the end of each line
     }
     printf("\n\n");
 }
@@ -51,26 +62,26 @@ int Introduction(int Ans){
     char InitalPlay;
     delayMS(500);
         printf("\t\t\t\t");
-    printf("\033[31mFrom the creators of nothing else:\033[0m\n");
+    printf("%s From the creators of nothing else:%s\n", RED_TEXT, RESETCOLORS);
         printf("\t\t\t\t");
 
-    printf("Juan M. Rios & Kyle Emerson\n \t\t\t\tPresent!\n");
+    printf("%sJuan M. Rios & Kyle Emerson\n \t\t\t\tPresent!%s\n", PRUPLE_TEXT, RESETCOLORS);
     delayMS(1000);//use to add a delay in Seconds NOT MS
         printf("\t\t\t\t");
 
-    printf("\033[32;44mCards!\033[0m\n");
+    printf("%sCards!%s\n", GREEN_TEXT, RESETCOLORS);
     delayMS(500);//use to add a delay in Seconds NOT MS
         printf("\t\t\t\t");
 
-    printf("\033[32;44mCards!\033[0m\n");
+    printf("%sCards!%s\n", GREEN_TEXT, RESETCOLORS);
     delayMS(500);//use to add a delay in Seconds NOT MS
         printf("\t\t\t\t");
 
-    printf("\033[32;44mCards!\033[0m\n");
+    printf("%sCards!%s\n", GREEN_TEXT, RESETCOLORS);
     delayMS(500);//use to add a delay in Seconds NOT MS
         printf("\t\t\t\t");
 
-    printf("Are you ready?\n");
+    printf("Are you ready?\n", GREEN_TEXT, RESETCOLORS);
             printf("\t\t\t\t");
     printf("Press [Y] for Yes or [N] for cowards:\n");
         printf("\n\n");
@@ -205,35 +216,14 @@ int playerScore, computerScore;
 
         // Determine winner
         if (playerScore > computerScore) {
+                Player_Wins++;
             printf("You win!\n");
         } else if (playerScore < computerScore) {
+                Computer_Wins++;
             printf("Computer wins!\n");
         } else {
             printf("It's a tie!\n");
         }
+        printf("%sPlayer = %d and Computer = %d%s\n", RED_TEXT, Player_Wins, Computer_Wins, RESETCOLORS);
         printf("\n\n\n");
 }
-
-/*
-    // Red text
-    printf("\033[31mThis text is red!\033[0m\n");
-
-    // Green text with blue background
-    printf("\033[32;44mGreen text on blue background\033[0m\n");
-
-    // Reset to default colors
-    printf("\033[0mThis is default text color.\n");
-
-        sleep(1);//use to add a delay in Seconds NOT MS
-    system("cls");// Use to clear the screen
-    */
-
-
-
-
-
-
-
-
-
-
