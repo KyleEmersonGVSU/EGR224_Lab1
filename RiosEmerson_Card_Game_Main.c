@@ -28,12 +28,26 @@ int main() {
     do {
         LuckOfTheDraw(deckM,deckSizeM);
         //Askig if they want to play again?
-        printf("Play again? (Y/N): ");
+        LOOP:printf("Play again? (Y/N): ");
         scanf(" %c", &playAgain);
+        switch(playAgain){
+
+        case 'y':
+        break;
+        case 'Y':
+        break;
+        case 'n':
+        break;
+        case 'N':
+        break;
+        default:
+        printf("Invalid Input, please enter 'Y/N'\n");
+        goto LOOP;
+        }
     } while (playAgain == 'Y' || playAgain == 'y');//He wants both upper and lower case
     //End of the game
     }
-    else{
+    else {
 
     }
     printf("\nThanks for playing!\n");

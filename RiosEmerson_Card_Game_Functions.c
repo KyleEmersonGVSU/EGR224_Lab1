@@ -23,7 +23,7 @@ const char *RED_Background = "\x1b[41m";
 const char *GREEN_Background = "\x1b[42m";
 const char *YELLOW_Background = "\x1b[43m";
 const char *ORANGE_Background = "\x1b[43;1m";
-const char *PRUPLE_TEXT = "\x1b[35;5m";//Accidently found that adding ;5 causing it to blink for some reason
+const char *PURPLE_TEXT = "\x1b[35;5m";//Accidently found that adding ;5 causing it to blink for some reason
 const char *GREEN_TEXT = "\x1b[32;5m";//Added five to cause it to blink like a circus
 const char *BLUE_TEXT = "\x1b[34m";
 const char *RED_TEXT = "\x1b[31m";
@@ -31,6 +31,7 @@ const char *YELLOW_TEXT = "\x1b[33m";
 const char *RESETCOLORS= "\x1b[0m";
 int Player_Wins = 0;
 int Computer_Wins = 0;
+int Ties = 0;
 /***********************************/
 
 
@@ -65,7 +66,7 @@ int Introduction(int Ans){
     printf("%s From the creators of nothing else:%s\n", RED_TEXT, RESETCOLORS);
         printf("\t\t\t\t");
 
-    printf("%sJuan M. Rios & Kyle Emerson\n \t\t\t\tPresent!%s\n", PRUPLE_TEXT, RESETCOLORS);
+    printf("%sJuan M. Rios & Kyle Emerson\n \t\t\t\tPresent!%s\n", PURPLE_TEXT, RESETCOLORS);
     delayMS(1000);//use to add a delay in Seconds NOT MS
         printf("\t\t\t\t");
 
@@ -86,13 +87,25 @@ int Introduction(int Ans){
     printf("Press [Y] for Yes or [N] for cowards:\n");
         printf("\n\n");
     color_Pattern();
-    scanf(" %c", &InitalPlay);
-    if(InitalPlay == 'Y' || InitalPlay == 'y'){
+    LOOP: scanf(" %c", &InitalPlay);
+
+   switch (InitalPlay){
+    default:
+        printf("Please Enter 'Y' or 'N'");
+        goto LOOP;
+        case 'y':
         Ans = 1;
-    }
-    else{
+        break;
+        case 'Y':
+        Ans = 1;
+        break;
+        case 'n':
         Ans = 0;
-    }
+        break;
+        case 'N':
+        Ans = 0;
+        break;
+   }
     return Ans;
 }
 /****************************************************
@@ -113,9 +126,7 @@ void create_deck(int deck[]) {
 * shuffle_deck
 * argument: N/A
 * return type: N/A
-* Description: Using the Rand function
-we give both the player and computer random
-values to
+* Description: Using the Rand function, the deck values are radomized
 ****************************************************/
 void shuffle_deck(int deck[], int size) {
     for (int i = size - 1; i > 0; i--) {
@@ -129,7 +140,7 @@ void shuffle_deck(int deck[], int size) {
 * display_card
 * argument: N/A
 * return type: N/A
-* Description:
+* Description: Assigns print value
 ****************************************************/
 void display_card(int card) {
     char *suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -140,7 +151,7 @@ void display_card(int card) {
 * display_hand
 * argument: N/A
 * return type: N/A
-* Description:
+* Description: Prints values to each card
 ****************************************************/
 void display_hand(int hand[], int size) {
     for (int i = 0; i < size; i++) {
@@ -151,7 +162,7 @@ void display_hand(int hand[], int size) {
 }
 /****************************************************
 * popCard
-* argument: N/A
+* argument: int size, int deck
 * return type: N/A
 * Description:
 ****************************************************/
@@ -161,9 +172,9 @@ int popCard(int *size, int deck[]) {
 }
 /****************************************************
 * findScore
-* argument: N/A
-* return type: N/A
-* Description:
+* argument: int hand[], int size
+* return type: int score
+* Description: Function adds up score for either player of computer
 ****************************************************/
 int findScore(int hand[], int size) {
     int score = 0;
@@ -181,7 +192,7 @@ int findScore(int hand[], int size) {
 }
 /****************************************************
 * LuckOfTheDraw
-* argument: N/A
+* argument: int deck[], int size
 * return type: N/A
 * Description:
 ****************************************************/
@@ -222,8 +233,9 @@ int playerScore, computerScore;
                 Computer_Wins++;
             printf("Computer wins!\n");
         } else {
+            Ties++;
             printf("It's a tie!\n");
         }
-        printf("%sPlayer = %d and Computer = %d%s\n", RED_TEXT, Player_Wins, Computer_Wins, RESETCOLORS);
+        printf("%sPlayer = %d, Computer = %d, Ties = %d%s\n", RED_TEXT, Player_Wins, Computer_Wins, Ties, RESETCOLORS);
         printf("\n\n\n");
 }
