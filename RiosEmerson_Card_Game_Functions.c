@@ -126,7 +126,9 @@ void create_deck(int deck[]) {
 * shuffle_deck
 * argument: N/A
 * return type: N/A
-* Description: Using the Rand function, the deck values are radomized
+* Description: 
+*     Using the Rand function,
+*     the deck values are radomized
 ****************************************************/
 void shuffle_deck(int deck[], int size) {
     for (int i = size - 1; i > 0; i--) {
@@ -140,7 +142,8 @@ void shuffle_deck(int deck[], int size) {
 * display_card
 * argument: N/A
 * return type: N/A
-* Description: Assigns print value
+* Description: 
+*     Assigns print value
 ****************************************************/
 void display_card(int card) {
     char *suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -151,7 +154,8 @@ void display_card(int card) {
 * display_hand
 * argument: N/A
 * return type: N/A
-* Description: Prints values to each card
+* Description: 
+*     Prints values to each card
 ****************************************************/
 void display_hand(int hand[], int size) {
     for (int i = 0; i < size; i++) {
@@ -164,7 +168,8 @@ void display_hand(int hand[], int size) {
 * popCard
 * argument: int size, int deck
 * return type: N/A
-* Description:
+* Description: 
+*     Function removes the top card from deck and decreases total cards in deck
 ****************************************************/
 int popCard(int *size, int deck[]) {
     int card = deck[--(*size)];
@@ -174,7 +179,8 @@ int popCard(int *size, int deck[]) {
 * findScore
 * argument: int hand[], int size
 * return type: int score
-* Description: Function adds up score for either player of computer
+* Description: 
+*     Function adds up score for either player of computer
 ****************************************************/
 int findScore(int hand[], int size) {
     int score = 0;
@@ -194,7 +200,10 @@ int findScore(int hand[], int size) {
 * LuckOfTheDraw
 * argument: int deck[], int size
 * return type: N/A
-* Description:
+* Description: 
+*     Function puts together shuffling, 
+*     dealing, scoring, and 
+*     printing of cards to serial monitor
 ****************************************************/
 void LuckOfTheDraw(int deck[], int size){
 int playerHand[5], computerHand[5];
